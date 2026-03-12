@@ -10,14 +10,12 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     Returns:
         pd.DataFrame: The cleaned DataFrame.
     """
-    # Remove duplicates
-    df = df.drop_duplicates()
     
     # renaming columns 
 
     df = df.rename(columns={"prices_(£)": "price_gbp",
-                           "names": "product_name",
                             "prices_unit_(£)": "price_per_kg",
+                           "names": "product_name",
                             "supermarket": "retailer"})  # Rename columns for consistency
     
 
@@ -35,6 +33,9 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
 
     df = df.dropna(subset=["price_gbp", "product_name", "price_per_kg", "own_brand"])  # Drop rows with any null values
 
+    # Remove duplicates
+    df = df.drop_duplicates()
+    
     # resetting index
     df = df.reset_index(drop=True)  # Reset index after dropping rows
 
