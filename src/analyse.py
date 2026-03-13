@@ -89,7 +89,7 @@ def listings_over_time(df: pd.DataFrame) -> pd.DataFrame:
         df.groupby(["month", "retailer"])["product_name"]
         .count()
         .reset_index()
-        .rename(columns={"product_names": "num_listings"})
+        .rename(columns={"product_name": "num_listings"})
     )
 
     result["month"] = result["month"].astype(str)
