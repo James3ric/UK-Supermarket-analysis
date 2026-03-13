@@ -33,7 +33,7 @@ def test_clean_data():
 
     assert "price_gbp" in cleaned.columns, "price_gbp column is missing"
     assert "price_per_kg" in cleaned.columns, "price_per_kg column is missing"
-    assert cleaned ["date"].dtype == "datetime64[us]", "date not datetime"
+    assert pd.api.types.is_datetime64_dtype(cleaned["date"]), "date column is not datetime"
     assert cleaned["own_brand"].dtype.name == "boolean", "own_brand not boolean"
     assert len(cleaned) == 2, "cleaned dataframe has incorrect number of rows"
 
